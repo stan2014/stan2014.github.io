@@ -1,0 +1,7 @@
+---
+deployment:
+ tasks:
+  - export DEPLOYPATH=~/public_html/
+  - /bin/cp -R assets $DEPLOYPATH
+  - /bin/cp index.html $DEPLOYPATH
+  - /bin/cp -R {2021,2022} $DEPLOYPATH
