@@ -5,3 +5,4 @@ name: Stan Overgauw
 permalink: pretty
 include: 
   - .cpanel.yml
+show_downloads: false
