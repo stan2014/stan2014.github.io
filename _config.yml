@@ -3,4 +3,5 @@ plugins:
 - jekyll-remote-theme
 name: Stan Overgauw
 permalink: pretty
-include: .cpanel.yml
+include: 
+  - .cpanel.yml
