@@ -6,3 +6,6 @@ permalink: pretty
 include: 
   - .cpanel.yml
 show_downloads: false
+author: Stan Overgauw
+github:
+  repository_url: https://github.com/stan2014/stan2014.github.io
