@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-
-gem 'jekyll-seo-tag'
-gem 'jekyll-feed'
-gem 'jekyll-twitter-plugin'
+group :jekyll-plugins do
+    gem 'jekyll-seo-tag'
+    gem 'jekyll-feed'
+    gem 'jekyll-twitter-plugin'
+end
