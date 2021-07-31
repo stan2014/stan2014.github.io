@@ -7,5 +7,6 @@ github:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-twitter-plugin
 url: https://overgauw.com
 title: Crazy ramblings

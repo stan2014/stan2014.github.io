@@ -12,3 +12,11 @@ layout: default
 {% if page.tags %}
   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
 {% endif %}
+
+{% if page.sources %}
+  <ol>
+    {% for source in page.sources %}
+      <li><a href="{{ source }}">{{ source }}</a></li>
+    {% endfor %}
+  </ol>
+{% endif %}
