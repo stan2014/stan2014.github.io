@@ -1,10 +1,11 @@
-remote_theme: pages-themes/hacker@v0.2.0
-plugins:
-- jekyll-remote-theme
 permalink: pretty
 include: 
   - .cpanel.yml
-show_downloads: false
 author: Stan Overgauw
 github:
-  repository_url: https://github.com/stan2014/stan2014.github.io
+  repository_url: https://github.com/stan2014/
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+url: https://overgauw.com
+title: Crazy ramblings
