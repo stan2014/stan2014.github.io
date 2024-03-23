@@ -1,6 +1,7 @@
 remote_theme: jekyll/minima
 minima:
   skin: auto
+  date_format: "%Y-%m-%d"
 author:
   name: Stan Overgauw
   email: "stan (at) overgauw.com"
