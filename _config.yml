@@ -8,3 +8,5 @@ author:
 title: Personal blog
 description: >
   Persoonlijke blog van Stan Overgauw
+plugins:
+  - jekyll-feed
