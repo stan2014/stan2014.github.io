@@ -1,0 +1,6 @@
+theme: minima
+minima:
+  skin: auto
+author:
+  name: Stan Overgauw
+  email: "stan (at) overgauw.com"
