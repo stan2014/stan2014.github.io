@@ -103,22 +103,34 @@ layout: base
   }
 </script>
 <div class="container">
- <div class="container">
- <div class="row">
+  <div class="row">
     <span class="blue-dice dice" id="blue-dice-0"></span>
     <span class="blue-dice dice" id="blue-dice-1"></span>
     <span class="blue-dice dice" id="blue-dice-2"></span>
   </div>
   <div class="row">
-    <span class="white-dice dice" id="white-dice-0"></span>
-    <span class="white-dice dice" id="white-dice-1"></span>
-    <span class="white-dice dice" id="white-dice-2"></span>
-    <span class="white-dice dice" id="white-dice-3"></span>
-    <span class="white-dice dice" id="white-dice-4"></span>
-    <span class="white-dice dice" id="white-dice-5"></span>
+    <span class="white-dice dice" id="white-dice-0" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-0").innerHTML'></span>
+    <span class="white-dice dice" id="white-dice-1" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-1").innerHTML'></span>
+    <span class="white-dice dice" id="white-dice-2" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-2").innerHTML'></span>
+    <span class="white-dice dice" id="white-dice-3" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-3").innerHTML'></span>
+    <span class="white-dice dice" id="white-dice-4" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-4").innerHTML'></span>
+    <span class="white-dice dice" id="white-dice-5" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-5").innerHTML'></span>
+  </div>
+   <div class="row">
+    <span class="white-dice dice" id="math-0" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-0").innerHTML'>+</span>
+    <span class="white-dice dice" id="math-1" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-1").innerHTML'>-</span>
+    <span class="white-dice dice" id="math-2" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-2").innerHTML'>*</span>
+    <span class="white-dice dice" id="math-3" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-3").innerHTML'>/</span>
+    <span class="white-dice dice" id="math-4" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-4").innerHTML'>(</span>
+    <span class="white-dice dice" id="math-5" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-5").innerHTML'>)</span>
   </div>
   <div class="row">
-    <form action="javascript:;" onsubmit="testOplossing(event)" id="oplossing"> 
+  <button onclick='document.getElementById("oplossing").oplossing.value = ""'>
+  reset
+  </button>
+  </div>
+  <div class="row">
+    <form action="javascript:;" onsubmit="testOplossing(event)" id="oplossing">
       <input type="text" name="oplossing">
       <input type="submit" value="Test oplossing">
     </form>
@@ -126,5 +138,7 @@ layout: base
   <div class="row">
     <span id="resultaat"></span>
   </div>
+</div>
+
 </div>
 </div>
