@@ -1,0 +1,129 @@
+---
+layout: base
+---
+<style>
+  .row{
+  display: flex;
+}
+
+.dice{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+    margin: 10px;
+  padding: 20px;
+}
+.blue-dice{
+    background: lightblue;
+}
+.white-dice{
+    background: whitesmoke;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.1/math.js" integrity="sha512-B2caA1wJW/b3Jhbhbb9waDjQ7NdG30fkULe9CgCzilQ8CUEdh2NdyGi/GrB+0kQdgfBbUdiLyAP2xdcDzNA6Ow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  blueDices = [2, 3, 4, 5, 7, 8]
+  blueDicesCount = 3
+  whiteDices = [
+    [1, 4, 6, 7, 9, 10],
+    [1, 4, 6, 7, 9, 10],
+    [2, 3, 4, 5, 7, 8],
+    [2, 3, 4, 5, 7, 8],
+    [15, 20, 25, 50, 75, 100],
+    [15, 20, 25, 50, 75, 100]
+  ]
+  opt = ['+', '-', '*', '/']
+  let target = 0;
+  document.addEventListener('readystatechange', event => {
+    if (event.target.readyState === "complete") {
+      digestMessage(new Date().toDateString()).then((hashArray) => {
+        for (let i = 0; i < blueDicesCount; i++) {
+          d = document.getElementById("blue-dice-" + i);
+          v = blueDices[hashArray[i] % blueDices.length];
+          d.innerHTML = v;
+          if (i == 0) {
+            target = target + (v * 100)
+          }
+          if (i == 1) {
+            target = target + (v * 10)
+          }
+          if (i == 2) {
+            target = target + v
+          }
+        }
+      })
+      digestMessage(new Date().toDateString()).then((hashArray) => {
+        for (let i = 0; i < whiteDices.length; i++) {
+          d = document.getElementById("white-dice-" + i);
+          d.innerHTML = whiteDices[i][hashArray[i] % whiteDices[i].length];
+        }
+      })
+    }
+  });
+
+  function testOplossing(event) {
+    event.preventDefault()
+    val = document.getElementById("oplossing").oplossing.value
+    if (validate(val)) {
+      score = math.evaluate(val)
+      document.getElementById("resultaat").innerHTML = 'score: ' + (10 - math.abs(target - score));
+    } else {
+      document.getElementById("resultaat").innerHTML = 'score: cheater';
+    }
+
+  }
+  async function digestMessage(msg) {
+    const msgUint8 = new TextEncoder().encode(msg);
+    const hashBuffer = await crypto.subtle.digest("SHA-512", msgUint8); // hash the message
+    const hashArray = Array.from(new Uint8Array(hashBuffer)); // convert buffer to byte array
+    return hashArray;
+  }
+
+  function validate(val) {
+    numbers = val.match(/([0-9]+)/g)
+    dicesInWhiteDices = 0
+    for (let i = 0; i < numbers.length; i++) {
+      nr = Number(numbers[i])
+      console.log(nr)
+      for (let j = 0; j < whiteDices.length; j++) {
+        whiteDice = whiteDices[j]
+        console.log(whiteDice)
+        if (whiteDice.includes(nr)) {
+          dicesInWhiteDices += 1
+          break
+        }
+      }
+    }
+    console.log(numbers.length, dicesInWhiteDices)
+    if (numbers.length == dicesInWhiteDices && dicesInWhiteDices <= 6) {
+      return true
+    }
+    return false
+  }
+</script>
+<div class="container">
+ <div class="container">
+ <div class="row">
+    <span class="blue-dice dice" id="blue-dice-0"></span>
+    <span class="blue-dice dice" id="blue-dice-1"></span>
+    <span class="blue-dice dice" id="blue-dice-2"></span>
+  </div>
+  <div class="row">
+    <span class="white-dice dice" id="white-dice-0"></span>
+    <span class="white-dice dice" id="white-dice-1"></span>
+    <span class="white-dice dice" id="white-dice-2"></span>
+    <span class="white-dice dice" id="white-dice-3"></span>
+    <span class="white-dice dice" id="white-dice-4"></span>
+    <span class="white-dice dice" id="white-dice-5"></span>
+  </div>
+  <div class="row">
+    <form action="javascript:;" onsubmit="testOplossing(event)" id="oplossing"> 
+      <input type="text" name="oplossing">
+      <input type="submit" value="Test oplossing">
+    </form>
+  </div>
+  <div class="row">
+    <span id="resultaat"></span>
+  </div>
+</div>
+</div>
