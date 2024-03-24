@@ -41,7 +41,7 @@ layout: base
         for (let i = 0; i < blueDicesCount; i++) {
           d = document.getElementById("blue-dice-" + i);
           v = blueDices[hashArray[i] % blueDices.length];
-          d.innerHTML = v;
+          d.innerHTML = "&nbsp;" + v + "&nbsp;";
           if (i == 0) {
             target = target + (v * 100)
           }
@@ -56,7 +56,13 @@ layout: base
       digestMessage(new Date().toDateString()).then((hashArray) => {
         for (let i = 0; i < whiteDices.length; i++) {
           d = document.getElementById("white-dice-" + i);
-          d.innerHTML = whiteDices[i][hashArray[i] % whiteDices[i].length];
+          k = whiteDices[i][hashArray[i] % whiteDices[i].length]
+          if (k < 10){
+          	k = "&nbsp;" + k + "&nbsp;"
+          }else if(k < 100){
+          k = "&nbsp;" + k
+          }
+          d.innerHTML = k;
         }
       })
     }
@@ -109,29 +115,30 @@ layout: base
     <span class="blue-dice dice" id="blue-dice-2"></span>
   </div>
   <div class="row">
-    <span class="white-dice dice" id="white-dice-0" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-0").innerHTML'></span>
-    <span class="white-dice dice" id="white-dice-1" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-1").innerHTML'></span>
-    <span class="white-dice dice" id="white-dice-2" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-2").innerHTML'></span>
-    <span class="white-dice dice" id="white-dice-3" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-3").innerHTML'></span>
-    <span class="white-dice dice" id="white-dice-4" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-4").innerHTML'></span>
-    <span class="white-dice dice" id="white-dice-5" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-5").innerHTML'></span>
+    <span class="white-dice dice" id="white-dice-0" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-0").innerHTML.replace(/&amp;nbsp;/g, "")'></span>
+    <span class="white-dice dice" id="white-dice-1" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-1").innerHTML.replace(/&amp;nbsp;/g, "")'></span>
+    <span class="white-dice dice" id="white-dice-2" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-2").innerHTML.replace(/&amp;nbsp;/g, "")'></span></div><div class="row">
+    <span class="white-dice dice" id="white-dice-3" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-3").innerHTML.replace(/&amp;nbsp;/g, "")'></span>
+    <span class="white-dice dice" id="white-dice-4" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-4").innerHTML.replace(/&amp;nbsp;/g, "")'></span>
+    <span class="white-dice dice" id="white-dice-5" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("white-dice-5").innerHTML.replace(/&amp;nbsp;/g, "")'></span>
   </div>
+<br>
    <div class="row">
-    <span class="white-dice dice" id="math-0" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-0").innerHTML'>+</span>
-    <span class="white-dice dice" id="math-1" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-1").innerHTML'>-</span>
-    <span class="white-dice dice" id="math-2" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-2").innerHTML'>*</span>
-    <span class="white-dice dice" id="math-3" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-3").innerHTML'>/</span>
-    <span class="white-dice dice" id="math-4" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-4").innerHTML'>(</span>
-    <span class="white-dice dice" id="math-5" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-5").innerHTML'>)</span>
+    <span class="white-dice dice" id="math-0" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-0").innerHTML.replace(/&amp;nbsp;/g, "")'>&nbsp;+&nbsp;</span>
+    <span class="white-dice dice" id="math-1" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-1").innerHTML.replace(/&amp;nbsp;/g, "")'>&nbsp;-&nbsp;</span>
+    <span class="white-dice dice" id="math-2" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-2").innerHTML.replace(/&amp;nbsp;/g, "")'>&nbsp;*&nbsp;</span></div><div class="row">
+    <span class="white-dice dice" id="math-3" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-3").innerHTML.replace(/&amp;nbsp;/g, "")'>&nbsp;/&nbsp;</span>
+    <span class="white-dice dice" id="math-4" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-4").innerHTML.replace(/&amp;nbsp;/g, "")'>&nbsp;(&nbsp;</span>
+    <span class="white-dice dice" id="math-5" onclick='document.getElementById("oplossing").oplossing.value += document.getElementById("math-5").innerHTML.replace(/&amp;nbsp;/g, "")'>&nbsp;)&nbsp;</span>
   </div>
   <div class="row">
-  <button onclick='document.getElementById("oplossing").oplossing.value = ""'>
+  <span onclick='document.getElementById("oplossing").oplossing.value = ""' class="dice" style="margin-left: 85px; background: whitesmoke">
   reset
-  </button>
+  </span>
   </div>
   <div class="row">
     <form action="javascript:;" onsubmit="testOplossing(event)" id="oplossing">
-      <input type="text" name="oplossing">
+      <input type="text" name="oplossing" readonly>
       <input type="submit" value="Test oplossing">
     </form>
   </div>
@@ -140,5 +147,3 @@ layout: base
   </div>
 </div>
 
-</div>
-</div>
